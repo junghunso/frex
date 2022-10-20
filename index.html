@@ -1,0 +1,392 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
+
+    <title>✝ You:th</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@200;300;400;500;600;700;900&display=swap"
+          rel="stylesheet">
+
+    <style>
+        * {
+            font-family: 'Noto Serif KR', serif;
+        }
+
+        .back {
+
+            width: 100%;
+            max-width: 1300px;
+            height: 200px;
+            color: whitesmoke;
+            background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://img.vogue.co.kr/vogue/2021/12/style_61c299401f4b3.jpeg');
+            background-position: center 35%;
+            background-size: auto;
+
+            margin: 15px auto 0px auto;
+
+            box-shadow: 0px 0px 3px 0px gray;
+            padding: 15px;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+
+        .wrap {
+            width: 100%;
+            max-width: 1300px;
+
+            margin: 15px auto 20px auto;
+
+            box-shadow: 0px 0px 3px 0px gray;
+            padding: 20px;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .temp1 {
+            font-size: 11pt;
+            color: #fc0404;
+        }
+
+        .btn {
+            font-size: 9pt;
+        }
+
+        table {
+            width: 100%;
+            max-width: 1300px;
+
+            margin: 15px auto 0px auto;
+            box-shadow: 0px 0px 3px 0px gray;
+            border: 1px;
+            border-top: 1px solid #444444;
+            border-collapse: collapse;
+            align-items: center;
+            text-align: center;
+
+        }
+
+        thead {
+            background-color: yellow;
+            color: black;
+        }
+
+
+        td {
+
+            border: 1px solid #444444;
+
+            padding: 7px 7px 7px 7px;
+
+            border-collapse: collapse;
+
+            font-size: 9pt;
+
+
+        }
+
+        a {
+            text-decoration: none;
+            color: #012169;
+            font-size: 8pt;
+        }
+
+
+    </style>
+
+    <script>
+        $(document).ready(function () {
+            set_temp()
+
+        });
+
+        function set_temp() {
+            $.ajax({
+                type: "GET",
+                url: "http://spartacodingclub.shop/sparta_api/weather/seoul",
+                data: {},
+                success: function (response) {
+                    $('#temp').text(response['temp'])
+                }
+            })
+        }
+
+
+        function q1() {
+            $('#names-q1').empty()
+            $.ajax({
+                type: "GET",
+                url: "/fc_fnb_rank100",
+                data: {},
+                success: function (response) {
+                    let rows = response['fc_fnb_rank100']
+                    for (let i = 0; i < rows.length; i++) {
+                        let count_num = i + 1
+                        let brand_num = rows[i]['z']
+                        let brand_name = rows[i]['영업표지']
+                        let industry_name = rows[i]['업종']
+                        let store_t1 = rows[i]['store_t1']
+                        let store_t2 = rows[i]['store_t2']
+                        let store_t3 = rows[i]['store_t3']
+                        let new_num = rows[i]['b']
+                        let terminal_num = rows[i]['d']
+                        let temp_html = `<tr>
+                                                        <td><a>${count_num + '위'}</a></td>
+                                                        <td width="130px"><a href="https://franchise.ftc.go.kr/mnu/00013/program/userRqst/view.do?firMstSn=${brand_num}" target="_blank">${brand_name}</a></td>
+                                                        <td><a>${industry_name}</a></td>
+                                                        <td>${store_t1}</td>
+                                                        <td>${store_t2}</td>
+                                                        <td>${store_t3}</td>
+                                                        <td>${new_num}</td>
+                                                        <td>${terminal_num}</td>
+                                                         </tr>`
+                        $('#names-q1').append(temp_html);
+                    }
+                }
+            })
+        }
+
+
+        function q2() {
+            $('#names-q2').empty()
+            $.ajax({
+                type: "GET",
+                url: "/fc_fnb_rank200",
+                data: {},
+                success: function (response) {
+                    let rows = response['fc_fnb_rank200']
+                    for (let i = 0; i < rows.length; i++) {
+                        let count_num = i + 1
+                        let brand_num = rows[i]['z']
+                        let brand_name = rows[i]['영업표지']
+                        let industry_name = rows[i]['업종']
+                        let store_t1 = rows[i]['store_t1']
+                        let store_t2 = rows[i]['store_t2']
+                        let store_t3 = rows[i]['store_t3']
+                        let new_num = rows[i]['b']
+                        let terminal_num = rows[i]['d']
+                        let temp_html = `<tr>
+                                                        <td><a>${count_num + '위'}</a></td>
+                                                        <td width="130px"><a href="https://franchise.ftc.go.kr/mnu/00013/program/userRqst/view.do?firMstSn=${brand_num}" target="_blank">${brand_name}</a></td>
+                                                        <td><a>${industry_name}</a></td>
+                                                        <td>${store_t1}</td>
+                                                        <td>${store_t2}</td>
+                                                        <td>${store_t3}</td>
+                                                        <td>${new_num}</td>
+                                                        <td>${terminal_num}</td>
+                                                         </tr>`
+                        $('#names-q2').append(temp_html);
+                    }
+                }
+            })
+        }
+
+        function q3() {
+            $('#names-q3').empty()
+            $.ajax({
+                type: "GET",
+                url: "/fc_fnb_up_rank",
+                data: {},
+                success: function (response) {
+                    let rows = response['fc_fnb_up_rank']
+                    for (let i = 0; i < rows.length; i++) {
+                        let count_num = i + 1
+                        let brand_num = rows[i]['z']
+                        let brand_name = rows[i]['영업표지']
+                        let industry_name = rows[i]['업종']
+                        let store_t1 = rows[i]['store_t1']
+                        let store_t2 = rows[i]['store_t2']
+                        let store_t3 = rows[i]['store_t3']
+                        let new_num = rows[i]['b']
+                        let terminal_num = rows[i]['d']
+                        let temp_html = `<tr>
+                                                        <td><a>${count_num + '위'}</a></td>
+                                                        <td width="130px" ><a href="https://franchise.ftc.go.kr/mnu/00013/program/userRqst/view.do?firMstSn=${brand_num}" target="_blank">${brand_name}</a></td>
+                                                        <td><a>${industry_name}</a></td>
+                                                        <td>${new_num}</td>
+                                                        <td>${terminal_num}</td>
+                                                        <td>${store_t1}</td>
+                                                        <td>${store_t2}</td>
+                                                        <td>${store_t3}</td>
+                                                         </tr>`
+                        $('#names-q3').append(temp_html);
+                    }
+                }
+            })
+        }
+
+
+        function q4() {
+            $('#names-q4').empty()
+            $.ajax({
+                type: "GET",
+                url: "/fc_fnb_down_rank",
+                data: {},
+                success: function (response) {
+                    let rows = response['fc_fnb_down_rank']
+                    for (let i = 0; i < rows.length; i++) {
+                        let count_num = i + 1
+                        let brand_num = rows[i]['z']
+                        let brand_name = rows[i]['영업표지']
+                        let industry_name = rows[i]['업종']
+                        let store_t1 = rows[i]['store_t1']
+                        let store_t2 = rows[i]['store_t2']
+                        let store_t3 = rows[i]['store_t3']
+                        let new_num = rows[i]['b']
+                        let terminal_num = rows[i]['d']
+                        let temp_html = `<tr>
+                                                        <td><a>${count_num + '위'}</a></td>
+                                                        <td width="130px"><a href="https://franchise.ftc.go.kr/mnu/00013/program/userRqst/view.do?firMstSn=${brand_num}" target="_blank"  >${brand_name}</a></td>
+                                                        <td><a>${industry_name}</a></td>
+                                                        <td>${terminal_num}</td>
+                                                        <td>${new_num}</td>
+                                                        <td>${store_t1}</td>
+                                                        <td>${store_t2}</td>
+                                                        <td>${store_t3}</td>
+                                                         </tr>`
+                        $('#names-q4').append(temp_html);
+                    }
+                }
+            })
+        }
+
+
+    </script>
+
+
+</head>
+<body>
+<div class="back">
+    <h1>You:th</h1>
+    <p>F&B 프랜차이즈 현황</p>
+    <p class="temp1">현재기온: <span id="temp"></span>도</p>
+
+
+</div>
+
+
+<div class="wrap">
+
+    <nav class="btn">
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+            <button onclick="q1()" class="nav-link active" id="nav-home-tab" data-bs-toggle="tab"
+                    data-bs-target="#nav-home"
+                    type="button" role="tab" aria-controls="nav-home" aria-selected="true">매장수 TOP 100
+            </button>
+            <button onclick="q2()" class="nav-link" id="nav-profile-tab" data-bs-toggle="tab"
+                    data-bs-target="#nav-profile"
+                    type="button" role="tab" aria-controls="nav-profile" aria-selected="false">매장수 TOP 200
+            </button>
+
+            <button onclick="q3()" class="nav-link" id="nav-contact-tab" data-bs-toggle="tab"
+                    data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact"
+                    aria-selected="false">매장증가 TOP 100
+            </button>
+
+            <button onclick="q4()" class="nav-link" id="nav-contact1-tab" data-bs-toggle="tab"
+                    data-bs-target="#nav-contact1" type="button" role="tab" aria-controls="nav-contact1"
+                    aria-selected="false">매장감소 TOP 100
+            </button>
+
+
+        </div>
+    </nav>
+    <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+            <table>
+                <thead>
+                <tr>
+                    <td>NO</td>
+                    <td>브랜드</td>
+                    <td>업종</td>
+                    <td>2021</td>
+                    <td>2020</td>
+                    <td>2019</td>
+                    <td>신규</td>
+                    <td>해지</td>
+                </tr>
+                </thead>
+                <tbody id="names-q1"></tbody>
+
+            </table>
+
+
+        </div>
+        <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+            <table>
+                <thead>
+                <tr>
+                    <td>NO</td>
+                    <td>브랜드</td>
+                    <td>업종</td>
+                    <td>2021</td>
+                    <td>2020</td>
+                    <td>2019</td>
+                    <td>신규</td>
+                    <td>해지</td>
+                </tr>
+                </thead>
+                <tbody id="names-q2"></tbody>
+            </table>
+        </div>
+
+        <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+            <table>
+                <thead>
+                <tr>
+                    <td>NO</td>
+                    <td>브랜드</td>
+                    <td>업종</td>
+                    <td>신규</td>
+                    <td>해지</td>
+                    <td>2021</td>
+                    <td>2020</td>
+                    <td>2019</td>
+                </tr>
+                </thead>
+                <tbody id="names-q3"></tbody>
+            </table>
+        </div>
+
+
+        <div class="tab-pane fade" id="nav-contact1" role="tabpanel" aria-labelledby="nav-contact1-tab">
+            <table>
+                <thead>
+                <tr>
+                    <td>NO</td>
+                    <td>브랜드</td>
+                    <td>업종</td>
+                    <td>해지</td>
+                    <td>신규</td>
+                    <td>2021</td>
+                    <td>2020</td>
+                    <td>2019</td>
+                </tr>
+                </thead>
+                <tbody id="names-q4"></tbody>
+            </table>
+        </div>
+
+
+    </div>
+
+
+</body>
+
+</html>
+
